@@ -1,12 +1,18 @@
 <?php
 
 Route::get('/', function () {
-    $name = 'World';
-    $age = 38;
-    $tasks = [
-    	'Go to the store',
-    	'Finish my screencast',
-    	'Clean the house'
-    ];
-    return view('welcome', compact('name', 'age', 'tasks'));
+    $tasks = DB::table('tasks')->get();
+    // return $tasks;
+    return view('welcome', compact('tasks'));
+});
+
+Route::get('/tasks', function () {
+    $tasks = DB::table('tasks')->latest()->get();
+    return view('tasks.index', compact('tasks'));
+});
+
+Route::get('/tasks/{id}', function ($id) {
+    $task = DB::table('tasks')->find($id);
+    // dd($task);
+    return view('tasks/show', compact('task'));
 });
