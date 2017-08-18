@@ -13,17 +13,6 @@ Route::get('/', function () {
     return view('welcome', compact('tasks'));
 });
 
-Route::get('/tasks', function () {
-    $tasks = DB::table('tasks')->latest()->get();
-    return view('tasks.index', compact('tasks'));
-});
+Route::get('/tasks', 'TasksController@index');
 
-Route::get('/tasks/{id}', function ($id) {
-    // QUERY BUILDER
-    // $task = DB::table('tasks')->find($id);
-    // dd($task);
-
-    // ELOQUENT
-    $task = Task::find($id);
-    return view('tasks/show', compact('task'));
-});
+Route::get('/tasks/{id}', 'TasksController@show');
