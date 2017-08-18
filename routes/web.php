@@ -1,8 +1,15 @@
 <?php
 
+// Import T for shorter code
+use App\Task;
+
 Route::get('/', function () {
-    $tasks = DB::table('tasks')->get();
+	// QUERY BUILDER
+    // $tasks = DB::table('tasks')->get();
     // return $tasks;
+
+    // ELOQUENT
+    $tasks = Task::all();
     return view('welcome', compact('tasks'));
 });
 
@@ -12,7 +19,11 @@ Route::get('/tasks', function () {
 });
 
 Route::get('/tasks/{id}', function ($id) {
-    $task = DB::table('tasks')->find($id);
+    // QUERY BUILDER
+    // $task = DB::table('tasks')->find($id);
     // dd($task);
+
+    // ELOQUENT
+    $task = Task::find($id);
     return view('tasks/show', compact('task'));
 });

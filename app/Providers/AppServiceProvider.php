@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+// Import Schema for the migration error
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,8 +14,11 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        //
+    {   
+        // Fixed error SQLSTATE[42000]: 
+        /*Syntax error or access violation: 1071 Specified key was too long; 
+        max key length is 767 bytes*/
+        Schema::defaultStringLength(191);
     }
 
     /**
