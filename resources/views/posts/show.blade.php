@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.master')
 
 @section('content')
 	<h1>A place to show the latest posts!!</h1>
