@@ -21,16 +21,11 @@ class PostsController extends Controller
     }    
     public function store()
     {
-    	// Create a new post using the request data
-    	// $post = new Post;
-    	// $post->title = request('title');
-    	// $post->body = request('body');
-    	// Save it to the DB
-    	// $post->save();
-
-    	// BETTER WAY
+    	$this->validate(request(), [
+			'title' => 'required',
+			'body' 	=> 'required'
+    	]);
     	Post::create(request(['title', 'body']));
-    	// Redirect to the home page
     	return redirect('/');
     }
 }
